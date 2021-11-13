@@ -5,8 +5,18 @@ MAX_NUMBER = 30
 
 
 class Game:
-    def __init__(self, user_name, difficulty):
+    def __init__(self):
         self.answer_list = []
+        self.user_name = ''
+        self.difficulty = ''
+        self.current_pw = '000000'
+        self.max_page = 0
+        self.current_page = 0
+        self.answer_text = ''
+        self.sound_effect = QSoundEffect()
+
+    # 새로운 게임 시작
+    def new_game(self, user_name, difficulty):
         self.user_name = user_name
         self.difficulty = difficulty
         self.current_pw = '000000'
