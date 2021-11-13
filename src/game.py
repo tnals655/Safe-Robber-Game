@@ -58,7 +58,11 @@ class Game:
     def check_password(self, password):
         return password == self.answer_text
 
-    def play_sound(self):
+    def goto_next(self, value):
+        self.current_pw += str(value)
+        self.current_page += 1
+
+    def play_sound_test(self):
         self.sound_effect.setSource(QUrl.fromLocalFile('resources/test.wav'))
         print(QUrl.fromLocalFile('resources/test.wav'))
         self.sound_effect.play()
