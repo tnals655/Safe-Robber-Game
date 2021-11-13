@@ -69,6 +69,9 @@ class Game:
 
 
 if __name__ == '__main__':
+    app = QApplication(sys.argv)
     game = Game()
+    game.new_game('test', 'Easy')
     print("# answer_text:", game.answer_text)
     print("# max_page:", game.max_page)
+    sys.exit(app.exec())
