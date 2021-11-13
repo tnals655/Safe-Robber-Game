@@ -1,5 +1,8 @@
 import random
 
+from PyQt5.QtCore import QUrl
+from PyQt5.QtMultimedia import QSoundEffect
+
 MIN_NUMBER = 1
 MAX_NUMBER = 30
 
@@ -51,8 +54,11 @@ class Game:
     def check_password(self, password):
         return password == self.answer_text
 
+    def play_sound(self):
+        self.sound_effect.setSource(QUrl.fromLocalFile('resources/test.wav'))
+
 
 if __name__ == '__main__':
-    game = Game('test', 'EASY')
+    game = Game()
     print("# answer_text:", game.answer_text)
     print("# max_page:", game.max_page)
