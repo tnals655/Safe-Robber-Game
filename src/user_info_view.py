@@ -1,15 +1,21 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QLabel, QLineEdit, QWidget, QRadioButton, QPushButton, QHBoxLayout, QVBoxLayout, QMessageBox
+from PyQt5.QtWidgets import QApplication, QLabel, QLineEdit, QWidget, QRadioButton, QPushButton, QHBoxLayout, \
+    QVBoxLayout, QMessageBox
 from PyQt5.QtCore import Qt
+from game import Game
+
 
 class UserInfoView(QWidget):
 
-    def __init__(self):
+    def __init__(self, game_data):
         super().__init__()
         self.initUI()
+        self.game = game_data
+        # self.game_view = GameView()
+
+    # 버튼 생성
 
     def initUI(self):
-        # 버튼 생성
         self.game_label = QLabel('플레이어 정보 입력', self)
 
         self.name_label = QLabel('이름', self)
@@ -18,15 +24,14 @@ class UserInfoView(QWidget):
 
         self.backspace_error = QLabel('(입력에 문제가 발생했다면 \'ESC\' 키를 눌러주세요)', self)
 
-
         self.difficulty_label = QLabel('난이도', self)
 
         self.easy_radio = QRadioButton('Easy', self)
         self.hard_radio = QRadioButton('Hard', self)
         self.easy_radio.setChecked(True)
 
-        self.start_button = QPushButton('시작', self) #self.button.clicked.connect(self.button_clicked)
-        self.start_button.clicked.connect(self.button_clicked) #addButton.clicked.connect(self.btnAdd_Clicked)
+        self.start_button = QPushButton('시작', self)  # self.button.clicked.connect(self.button_clicked)
+        self.start_button.clicked.connect(self.button_clicked)  # addButton.clicked.connect(self.btnAdd_Clicked)
 
         # 레이아웃
         self.game_layout = QHBoxLayout()
@@ -45,7 +50,7 @@ class UserInfoView(QWidget):
         self.start_layout = QHBoxLayout()
         self.start_layout.addWidget(self.start_button)
 
-        #위 레이아웃들 윈도우에 대입.
+        # 위 레이아웃들 윈도우에 대입.
         self.window1_layout = QVBoxLayout()
         self.window1_layout.addStretch(1)
         self.window1_layout.addLayout(self.game_layout)
@@ -70,10 +75,15 @@ class UserInfoView(QWidget):
         self.user_name = self.name_edit.text().strip()
         if len(self.user_name) == 0:
             QMessageBox.about(self, "ERROR: name", "이름을 입력하세요")
-        #else: #DB에 저장
+        else:
+            difficulty = 'Easy' if self.easy_radio.isChecked() else 'Hard'
+            self.game.new_game(self.user_name, difficulty)
+            self.hide()
+
 
 
 if __name__ == '__main__':
+    game = Game()
     app = QApplication(sys.argv)
-    ex = UserInfoView()
+    ex = UserInfoView(game)
     sys.exit(app.exec_())

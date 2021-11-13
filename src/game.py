@@ -1,7 +1,10 @@
 import random
+import sys
+import time
 
 from PyQt5.QtCore import QUrl
 from PyQt5.QtMultimedia import QSoundEffect
+from PyQt5.QtWidgets import QApplication
 
 MIN_NUMBER = 1
 MAX_NUMBER = 30
@@ -12,7 +15,7 @@ class Game:
         self.answer_list = []
         self.user_name = ''
         self.difficulty = ''
-        self.current_pw = '000000'
+        self.current_pw = ''
         self.max_page = 0
         self.current_page = 0
         self.answer_text = ''
@@ -22,10 +25,11 @@ class Game:
     def new_game(self, user_name, difficulty):
         self.user_name = user_name
         self.difficulty = difficulty
-        self.current_pw = '000000'
+        self.current_pw = ''
         self.max_page = random.randrange(3, 7)
         self.current_page = 1
         self.answer_text = self.create_password()
+        print("# max_page:", self.max_page)
 
     # 정답 결정
     def create_password(self):
@@ -54,11 +58,20 @@ class Game:
     def check_password(self, password):
         return password == self.answer_text
 
-    def play_sound(self):
+    def goto_next(self, value):
+        self.current_pw += str(value)
+        self.current_page += 1
+
+    def play_sound_test(self):
         self.sound_effect.setSource(QUrl.fromLocalFile('resources/test.wav'))
+        print(QUrl.fromLocalFile('resources/test.wav'))
+        self.sound_effect.play()
 
 
 if __name__ == '__main__':
+    app = QApplication(sys.argv)
     game = Game()
+    game.new_game('test', 'Easy')
     print("# answer_text:", game.answer_text)
     print("# max_page:", game.max_page)
+    sys.exit(app.exec())
