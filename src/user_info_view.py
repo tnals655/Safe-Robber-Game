@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QLabel, QLineEdit, QWidget, QRadioButt
     QVBoxLayout, QMessageBox
 from PyQt5.QtCore import Qt
 from game import Game
+from game_view import GameView
 
 
 class UserInfoView(QWidget):
@@ -11,6 +12,8 @@ class UserInfoView(QWidget):
         super().__init__()
         self.initUI()
         self.game = game_data
+        self.game_view = GameView(self.game)
+        self.game_view.hide()
         # self.game_view = GameView()
 
     # 버튼 생성
@@ -78,7 +81,10 @@ class UserInfoView(QWidget):
         else:
             difficulty = 'Easy' if self.easy_radio.isChecked() else 'Hard'
             self.game.new_game(self.user_name, difficulty)
+            self.game_view.show()
             self.hide()
+
+
 
 
 
