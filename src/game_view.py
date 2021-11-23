@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget, \
     QPushButton, QHBoxLayout, QVBoxLayout, QDial
 from PyQt5.QtCore import Qt
+import game
 
 
 class GameView(QWidget):
@@ -9,12 +10,14 @@ class GameView(QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
+        self.import_game = game.Game()
 
     def initUI(self):
         # 버튼 생성
         self.result_edit = QLineEdit(self)
         self.result_edit.setAlignment(Qt.AlignRight)
         self.result_edit.setReadOnly(True)
+        self.result_edit.setText('000000')
 
         self.dial = QDial(self)
         self.dial.setNotchesVisible(True)
@@ -27,6 +30,11 @@ class GameView(QWidget):
         self.ok_button.clicked.connect(self.button_clicked)  # ok버튼 누르면 result_edit에 입력
 
         # 레이아웃
+        self.result_layout = QHBoxLayout()
+        self.result_layout.addStretch(3)
+        self.result_layout.addWidget(self.result_edit)
+        self.result_layout.addStretch(3)
+
         self.ok_layout = QHBoxLayout()
         self.ok_layout.addStretch(1)
         self.ok_layout.addWidget(self.ok_button)
@@ -34,7 +42,7 @@ class GameView(QWidget):
 
         self.window2_layout = QVBoxLayout()
         # self.window2_layout.addStretch(1)
-        self.window2_layout.addWidget(self.result_edit)
+        self.window2_layout.addLayout(self.result_layout)
         self.window2_layout.addWidget(self.dial)
         self.window2_layout.addLayout(self.ok_layout)
 
@@ -42,14 +50,17 @@ class GameView(QWidget):
 
         self.setWindowTitle("한둘")  # 윈도우 크기상 두글자가 최대
         self.move(300, 300)
-        self.resize(250, 250)
+        self.resize(418, 418)
         self.show()  # show를 initUI에다가
 
-    def button_clicked(self):
+    def button_clicked(self): #수정함
         num = self.dial.value()
-        # self.answer += num
-        self.result_edit.setText(num)
-        # print(num, ',', self.answer)
+        current_num = self.import_game.goto_next(num) # game.py의 goto_next 에 현재 입력값을 넣어서 game.py의 current_pw 갱신
+        zeros = 6 - len(current_num) # 0의 개수
+        print(zeros)
+        display_pw = current_num + '0' * zeros # 130000
+        print(display_pw)
+        self.result_edit.setText(display_pw)
 
 
 if __name__ == '__main__':
