@@ -1,6 +1,7 @@
 import random
 import sys
 import time
+import winsound
 
 from PyQt5.QtCore import QUrl
 from PyQt5.QtMultimedia import QSoundEffect

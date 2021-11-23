@@ -30,7 +30,7 @@ class GameView(QWidget):
 
         self.dial = QDial(self)
         self.dial.setNotchesVisible(True)
-        self.dial.setRange(0, 40)
+        self.dial.setRange(1, 30)
         self.dial.setValue(0)
         self.dial.setWrapping(False)
         # self.dial.valueChanged[int].connect(self.chagne_Value) #다이얼 움직일때 소리 함수와 연결
