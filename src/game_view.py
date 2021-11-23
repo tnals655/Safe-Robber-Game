@@ -11,6 +11,7 @@ class GameView(QWidget):
         super().__init__()
         self.initUI()
         self.import_game = game.Game()
+        self.max_page = self.import_game.max_page
 
     def initUI(self):
         # 버튼 생성
@@ -50,17 +51,22 @@ class GameView(QWidget):
 
         self.setWindowTitle("한둘")  # 윈도우 크기상 두글자가 최대
         self.move(300, 300)
-        self.resize(418, 418)
+        # self.resize(418, 418)
         self.show()  # show를 initUI에다가
 
     def button_clicked(self): #수정함
         num = self.dial.value()
-        current_num = self.import_game.goto_next(num) # game.py의 goto_next 에 현재 입력값을 넣어서 game.py의 current_pw 갱신
-        zeros = 6 - len(current_num) # 0의 개수
-        print(zeros)
-        display_pw = current_num + '0' * zeros # 130000
-        print(display_pw)
-        self.result_edit.setText(display_pw)
+        # game.py의 goto_next 에 현재 입력값을 넣어서 game.py의 current_pw 갱신
+        pw, page = self.import_game.goto_next(num)
+        if page < self.max_page: # max_page 이전이라면 갱신
+            zeros = 6 - len(pw) # 0의 개수
+            print(zeros)
+            display_pw = pw + '0' * zeros # 130000
+            print(display_pw)
+            self.result_edit.setText(display_pw)
+        #else: # max_page 라면 결과 열람
+
+
 
 
 if __name__ == '__main__':

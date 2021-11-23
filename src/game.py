@@ -1,6 +1,7 @@
 import random
 import sys
 import time
+import winsound
 
 from PyQt5.QtCore import QUrl
 from PyQt5.QtMultimedia import QSoundEffect
@@ -61,12 +62,17 @@ class Game:
     def goto_next(self, value):
         self.current_pw += str(value)
         self.current_page += 1
-        return self.current_pw
+        return self.current_pw, self.current_page
 
-    def play_sound_test(self):
-        self.sound_effect.setSource(QUrl.fromLocalFile('resources/test.wav'))
-        print(QUrl.fromLocalFile('resources/test.wav'))
-        self.sound_effect.play()
+    def play_sound_test(answer, value):  # 30씩 증가
+        answer_fr = 1000
+        duration = 1500
+        if answer > value:
+            play_fr = answer_fr - 30 * (answer - value)
+        else:
+            play_fr = answer_fr - 30 * (value - answer)
+        print(play_fr)
+        winsound.Beep(play_fr, duration)
 
 
 if __name__ == '__main__':
