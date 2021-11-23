@@ -5,18 +5,24 @@ from PyQt5.QtWidgets import QWidget, QLineEdit, QTextEdit, QVBoxLayout, QLabel, 
     QMessageBox
 
 from ranking import Ranking
+from game import Game
 
 
 class RankView(QWidget):
-    def __init__(self, user_name, rank_data, ranking, success, parent=None):
+    def __init__(self, game_data, success, parent=None):
         super().__init__(parent)
-        self.rank_data = rank_data
+        self.user_name = game_data.user_name
+        self.difficulty = game_data.difficulty
+        self.ranking = Ranking(self.difficulty)
+        self.ranking.read_from_file()
         self.success = success
-        self.ranking = ranking
         self.setWindowTitle('게임 결과')
+        self.game = game_data
 
         self.rank_slot = QTextEdit()
         self.rank_slot.setReadOnly(True)
+
+        rank_data = self.ranking.rank_data
 
         for i in range(len(rank_data)):
             if i < 3:
@@ -36,14 +42,18 @@ class RankView(QWidget):
 
         self.layout.addSpacing(20)
 
-        self.name_text = QLabel("이름: " + str(user_name))
+        self.name_text = QLabel("이름: " + str(self.user_name))
         self.name_text.setAlignment(Qt.AlignCenter)
         self.layout.addWidget(self.name_text)
 
         if success:
-            self.rank_text = QLabel("등수: 1")
+            record_tuple = (self.user_name, game_data.time_record)
+            temp_rank_data = self.ranking.rank_data
+            temp_rank_data.append(record_tuple)
+            temp_rank_data.sort()
+            self.rank_text = QLabel("등수: " + str(temp_rank_data.index(record_tuple) + 1))
             self.rank_text.setAlignment(Qt.AlignCenter)
-            self.record_text = QLabel("기록: 1000")
+            self.record_text = QLabel("기록: " + str(game_data.time_record))
             self.record_text.setAlignment(Qt.AlignCenter)
             self.layout.addWidget(self.rank_text)
             self.layout.addWidget(self.record_text)
@@ -60,7 +70,7 @@ class RankView(QWidget):
         if self.success:
             ret = QMessageBox.question(self, '저장', '결과를 저장하겠습니까?', QMessageBox.Ok, QMessageBox.Cancel)
             if ret == QMessageBox.Ok:
-                self.ranking.rank_data = self.rank_data
+                self.ranking.rank_to_data(user_name=self.user_name, time=self.game.time_record)
                 self.ranking.write_to_file()
             sys.exit()
         else:
@@ -69,9 +79,9 @@ class RankView(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ranking = Ranking()
-    ranking.read_from_file()
-    print("# rank_data =", ranking.rank_data)
-    rank_view = RankView(user_name='test', rank_data=[('test1', 1000), ('test2', 100)], success=True, ranking=ranking)
+    game = Game()
+    game.new_game(user_name='test', difficulty='Easy')
+    game.record_time()
+    rank_view = RankView(game_data=game, success=True)
     rank_view.show()
     sys.exit(app.exec_())

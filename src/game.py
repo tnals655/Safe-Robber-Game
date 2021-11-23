@@ -21,6 +21,8 @@ class Game:
         self.current_page = 0
         self.answer_text = ''
         self.sound_effect = QSoundEffect()
+        self.start_time = -1
+        self.time_record = -1
 
     # 새로운 게임 시작
     def new_game(self, user_name, difficulty):
@@ -30,7 +32,8 @@ class Game:
         self.max_page = random.randrange(3, 7)
         self.current_page = 1
         self.answer_text = self.create_password()
-        print("# max_page:", self.max_page)
+        self.start_time = time.time()
+        #print("# max_page:", self.max_page)
 
     # 정답 결정
     def create_password(self):
@@ -56,8 +59,11 @@ class Game:
         return result_text
 
     # 정답 체크
-    def check_password(self, password):
-        return password == self.answer_text
+    def check_password(self):
+        return self.current_pw == self.answer_text
+
+    def record_time(self):
+        self.time_record = time.time() - self.start_time
 
     def goto_next(self, value):
         self.current_pw += str(value)
@@ -74,11 +80,13 @@ class Game:
         print(play_fr)
         winsound.Beep(play_fr, duration)
 
+def play_beep_sound(): #winsound.Beep(frequency, duration) 37Hz~32,767Hz milliseconds
+    fr = 2000  # range : 37 ~ 32767
+    du = 1000  # 1000 ms ==1second
+    winsound.Beep(fr, du)
+    # 0~value: 커지다가 vale~30: 줄어들게
+
+
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    game = Game()
-    game.new_game('test', 'Easy')
-    print("# answer_text:", game.answer_text)
-    print("# max_page:", game.max_page)
-    sys.exit(app.exec())
+    play_beep_sound()
