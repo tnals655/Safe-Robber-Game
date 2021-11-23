@@ -2,8 +2,8 @@ import pickle
 
 
 class Ranking:
-    def __init__(self):
-        self.file_name = 'ranking.dat'
+    def __init__(self, difficulty):
+        self.file_name = 'ranking_' + str(difficulty).lower() + '.dat'
         # List of Tuple (이름, 시간)
         self.rank_data = []
 
@@ -28,14 +28,11 @@ class Ranking:
 
     def rank_to_data(self, user_name, time):
         self.rank_data.append((user_name, time))
-        self.rank_data = sorted(self.rank_data, reverse=True)
+        self.rank_data = sorted(self.rank_data)
 
 
 if __name__ == '__main__':
-    ranking = Ranking()
+    ranking = Ranking('hard')
     ranking.read_from_file()
-    ranking.rank_to_data('test', 10)
-    ranking.rank_to_data('test1', 111)
-    ranking.rank_to_data('abc', 1)
     print(ranking.rank_data)
     ranking.write_to_file()
