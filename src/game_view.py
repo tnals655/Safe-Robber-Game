@@ -38,7 +38,7 @@ class GameView(QWidget):
 
         self.dial = QDial(self)
         self.dial.setNotchesVisible(True)
-        self.dial.setRange(1, self.game.max_number)
+        self.dial.setRange(1, 30)
         self.dial.setValue(0)
         self.dial.setWrapping(False)
         #self.dial.valueChanged.connect(self.play_sound)
@@ -97,6 +97,9 @@ class GameView(QWidget):
 
     def value_changed(self, value):
         self.game.play_beep_sound(value)
+
+    def update_dial_range(self):
+        self.dial.setRange(1, self.game.max_number)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

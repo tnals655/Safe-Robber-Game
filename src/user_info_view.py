@@ -88,6 +88,7 @@ class UserInfoView(QWidget):
         else:
             difficulty = 'Easy' if self.easy_radio.isChecked() else 'Hard'
             self.game.new_game(user_name, difficulty)
+            self.game_view.update_dial_range()
             self.game_view.show()
             self.hide()
 
