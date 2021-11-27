@@ -1,4 +1,6 @@
 import sys
+
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QLabel, QLineEdit, QWidget, QRadioButton, QPushButton, QHBoxLayout, \
     QVBoxLayout, QMessageBox
 from PyQt5.QtCore import Qt
@@ -75,6 +77,7 @@ class UserInfoView(QWidget):
 
         # 윈도우
         self.setWindowTitle("금고 털기 게임")
+        self.setWindowIcon(QIcon('resources/icon.png'))
         self.move(300, 300)
         self.resize(450, 320) #가로, 세로
         self.show()  # show를 initUI에다가
