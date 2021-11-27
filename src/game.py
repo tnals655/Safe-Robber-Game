@@ -70,9 +70,13 @@ class Game:
         self.current_page += 1
         return self.current_pw, self.current_page
 
-    def play_sound(self, answer, value):  # 30씩 증가
+    def play_sound(self, value):  # 30씩 증가
+
+        answer = self.answer_list[self.current_page + 1]
         answer_fr = 1000
         duration = 1500
+
+        print('game.py value', value, ' answer', answer)
         if answer > value:
             play_fr = answer_fr - 30 * (answer - value)
         else:
