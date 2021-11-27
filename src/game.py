@@ -47,6 +47,8 @@ class Game:
                 rand_num = random.randrange(1, 10) if i > 0 else random.randrange(10, self.max_number + 1)
 
             self.answer_list.append(rand_num)
+            # 숫자 결정 후에 리스트 랜덤으로 섞기
+            random.shuffle(self.answer_list)
 
         result_text = ''
 
