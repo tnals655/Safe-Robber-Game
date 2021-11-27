@@ -75,12 +75,12 @@ class UserInfoView(QWidget):
         self.show()  # show를 initUI에다가
 
     def button_clicked(self):
-        self.user_name = self.name_edit.text().strip()
+        user_name = self.name_edit.text().strip()
         if len(self.user_name) == 0:
             QMessageBox.about(self, "ERROR: name", "이름을 입력하세요")
         else:
             difficulty = 'Easy' if self.easy_radio.isChecked() else 'Hard'
-            self.game.new_game(self.user_name, difficulty)
+            self.game.new_game(user_name, difficulty)
             self.game_view.show()
             self.hide()
 
