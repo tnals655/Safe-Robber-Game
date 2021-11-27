@@ -1,5 +1,7 @@
 import sys
 import winsound
+
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget, \
     QPushButton, QHBoxLayout, QVBoxLayout, QDial, QLCDNumber, QLabel
 from PyQt5.QtCore import Qt
@@ -71,7 +73,8 @@ class GameView(QWidget):
 
         self.setLayout(self.window2_layout)
 
-        self.setWindowTitle("금고털기 게임")  # 윈도우 크기상 두글자가 최대
+        self.setWindowTitle("금고털기 게임")
+        self.setWindowIcon(QIcon('resources/icon.png'))# 윈도우 크기상 두글자가 최대
         self.move(300, 300)
         self.resize(400, 418)
         self.show()  # show를 initUI에다가
