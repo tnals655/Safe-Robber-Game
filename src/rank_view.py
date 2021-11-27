@@ -1,6 +1,7 @@
 import sys
 
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QWidget, QLineEdit, QTextEdit, QVBoxLayout, QLabel, QApplication, QLayout, QPushButton, \
     QMessageBox
 
@@ -17,6 +18,7 @@ class RankView(QWidget):
         self.ranking.read_from_file()
         self.success = success
         self.setWindowTitle('게임 결과')
+        self.setWindowIcon(QIcon('resources/icon.png'))
         self.game = game_data
 
         self.rank_slot = QTextEdit()
