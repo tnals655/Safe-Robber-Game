@@ -38,7 +38,7 @@ class GameView(QWidget):
 
         self.dial = QDial(self)
         self.dial.setNotchesVisible(True)
-        self.dial.setRange(1, 30)
+        self.dial.setRange(1, self.game.max_number)
         self.dial.setValue(0)
         self.dial.setWrapping(False)
         #self.dial.valueChanged.connect(self.play_sound)
@@ -76,7 +76,8 @@ class GameView(QWidget):
         self.resize(400, 418)
         self.show()  # show를 initUI에다가
 
-    def button_clicked(self): #수정함
+    def button_clicked(self):
+        button = self.sender()
         num = self.dial.value()
         page = self.game.current_page
         current_pw = self.game.goto_next(num)
@@ -84,10 +85,13 @@ class GameView(QWidget):
         display_pw = current_pw + '0' * zeros
         #self.result_edit.setText(display_pw)
         self.result_lcd.display(str(display_pw))
+
         # game.py의 goto_next 에 현재 입력값을 넣어서 game.py의 current_pw 갱신
-        if page >= self.game.max_page:
+        # 페이지가 끝까지 가지 않았을 때 6자리가 되면 실패로 처리
+        if len(current_pw) == 6:
+            success = self.game.check_password() if page >= self.game.max_page else False
             self.game.record_time()
-            self.rank_view = RankView(self.game, success=self.game.check_password())
+            self.rank_view = RankView(self.game, success=success)
             self.rank_view.show()
             self.hide()
 
