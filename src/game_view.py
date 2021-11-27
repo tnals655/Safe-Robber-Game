@@ -1,4 +1,5 @@
 import sys
+import winsound
 from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget, \
     QPushButton, QHBoxLayout, QVBoxLayout, QDial, QLCDNumber
 from PyQt5.QtCore import Qt
@@ -33,7 +34,9 @@ class GameView(QWidget):
         self.dial.setRange(1, 30)
         self.dial.setValue(0)
         self.dial.setWrapping(False)
+        #self.dial.valueChanged.connect(self.play_sound)
         # self.dial.valueChanged[int].connect(self.chagne_Value) #다이얼 움직일때 소리 함수와 연결
+        self.dial.valueChanged[int].connect(self.chagne_Value)
 
         self.ok_button = QPushButton('OK', self)
         self.ok_button.clicked.connect(self.button_clicked)  # ok버튼 누르면 result_edit에 입력
@@ -62,6 +65,21 @@ class GameView(QWidget):
         self.resize(418, 418)
         self.show()  # show를 initUI에다가
 
+
+    def play_sound(self, value):  # 30씩 증가
+
+        answer = self.game.answer_list[self.game.current_page + 1]
+        answer_fr = 1000
+        duration = 1500
+
+        print('game.py value', value, ' answer', answer)
+        if answer > value:
+            play_fr = answer_fr - 30 * (answer - value)
+        else:
+            play_fr = answer_fr - 30 * (value - answer)
+        print(play_fr)
+        winsound.Beep(play_fr, duration)
+
     def button_clicked(self): #수정함
         num = self.dial.value()
         page = self.game.current_page
@@ -77,6 +95,8 @@ class GameView(QWidget):
             self.rank_view.show()
             self.hide()
 
+    def chagne_Value(self, value):
+        print('game_view.py',value)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
@@ -84,3 +104,4 @@ if __name__ == '__main__':
     game_instance.new_game(user_name='test', difficulty='Hard')
     game_view = GameView(game_instance)
     sys.exit(app.exec_())
+
