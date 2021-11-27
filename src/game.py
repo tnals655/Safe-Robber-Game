@@ -1,11 +1,9 @@
 import random
 import sys
 import time
-import winsound
 
 from PyQt5.QtCore import QUrl
 from PyQt5.QtMultimedia import QSoundEffect
-from PyQt5.QtWidgets import QApplication
 
 MIN_NUMBER = 1
 MAX_NUMBER = 30
@@ -21,6 +19,7 @@ class Game:
         self.current_page = 0
         self.answer_text = ''
         self.sound_effect = QSoundEffect()
+        self.sound_effect.setSource(QUrl.fromLocalFile('resources/beep.wav'))
         self.start_time = -1
         self.time_record = -1
 
@@ -68,18 +67,12 @@ class Game:
     def goto_next(self, value):
         self.current_pw += str(value)
         self.current_page += 1
-        return self.current_pw, self.current_page
+        return self.current_pw
 
-    def play_sound(self, value):  # 30씩 증가
+    def play_beep_sound(self, value):
+        # 0부터 answer까지 줄이다가 answer부터 30까지 늘리기
+        answer = self.answer_list[self.current_page - 1]
+        volume = (1 - (value / answer)) if answer >= value else (value - answer) / (MAX_NUMBER - answer)
+        self.sound_effect.setVolume(volume)
+        self.sound_effect.play()
 
-        answer = self.answer_list[self.current_page + 1]
-        answer_fr = 1000
-        duration = 1500
-
-        print('game.py value', value, ' answer', answer)
-        if answer > value:
-            play_fr = answer_fr - 30 * (answer - value)
-        else:
-            play_fr = answer_fr - 30 * (value - answer)
-        print(play_fr)
-        winsound.Beep(play_fr, duration)
