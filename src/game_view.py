@@ -66,8 +66,7 @@ class GameView(QWidget):
 
         self.window2_layout = QVBoxLayout()
         self.window2_layout.addLayout(self.result_layout)
-        if self.game.difficulty == 'Easy':  # 난이도가 Easy 일 때 버튼을 누르는 횟수를 알려주는 QLineEdit() 추가
-            self.window2_layout.addLayout(self.easy_mode_layout)
+        self.window2_layout.addLayout(self.easy_mode_layout)
         self.window2_layout.addWidget(self.dial)
         self.window2_layout.addLayout(self.ok_layout)
 
@@ -104,8 +103,11 @@ class GameView(QWidget):
     def value_changed(self, value):
         self.game.play_beep_sound(value)
 
-    def update_dial_range(self):
+    def update_game(self):
+        max_count = self.game.max_page if self.game.difficulty == 'Easy' else '?'
+
         self.dial.setRange(1, self.game.max_number)
+        self.easy_mode.setText('버튼을 누르는 횟수 : ' + "'" + str(max_count) + "'" + ' 번')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
