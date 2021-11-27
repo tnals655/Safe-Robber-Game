@@ -28,9 +28,9 @@ class UserInfoView(QWidget):
 
         self.backspace_error = QLabel('(입력에 문제가 발생했다면 \'ESC\' 키를 눌러주세요)', self)
 
-        self.difficulty_label = QLabel('난이도', self)
-        self.easy_explain_label = QLabel('Easy : 버튼을 눌러야하는 횟수가 game창에 표시됩니다.',self)
-        self.hard_explain_label = QLabel('Hard : 소리로만 정답을 유추해야합니다.',self)
+        self.difficulty_label = QLabel('<난이도>', self)
+        self.easy_explain_label = QLabel('※ Easy : 버튼을 눌러야 하는 횟수가 게임 창에 표시됩니다.', self)
+        self.hard_explain_label = QLabel('※ Hard : 소리로만 정답을 유추해야 합니다.', self)
 
         self.easy_radio = QRadioButton('Easy', self)
         self.hard_radio = QRadioButton('Hard', self)
