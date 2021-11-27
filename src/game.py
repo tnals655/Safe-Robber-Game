@@ -70,7 +70,7 @@ class Game:
         self.current_page += 1
         return self.current_pw, self.current_page
 
-    def play_sound_test(answer, value):  # 30씩 증가
+    def play_sound(self, answer, value):  # 30씩 증가
         answer_fr = 1000
         duration = 1500
         if answer > value:
@@ -79,14 +79,3 @@ class Game:
             play_fr = answer_fr - 30 * (value - answer)
         print(play_fr)
         winsound.Beep(play_fr, duration)
-
-def play_beep_sound(): #winsound.Beep(frequency, duration) 37Hz~32,767Hz milliseconds
-    fr = 2000  # range : 37 ~ 32767
-    du = 1000  # 1000 ms ==1second
-    winsound.Beep(fr, du)
-    # 0~value: 커지다가 vale~30: 줄어들게
-
-
-
-if __name__ == '__main__':
-    play_beep_sound()
