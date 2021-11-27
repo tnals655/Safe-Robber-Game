@@ -1,7 +1,7 @@
 import sys
 import winsound
 from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget, \
-    QPushButton, QHBoxLayout, QVBoxLayout, QDial, QLCDNumber
+    QPushButton, QHBoxLayout, QVBoxLayout, QDial, QLCDNumber, QLabel
 from PyQt5.QtCore import Qt
 from game import Game
 from rank_view import RankView
@@ -29,6 +29,13 @@ class GameView(QWidget):
         self.result_lcd.setMinimumSize(200, 100)
         self.result_lcd.display('000000')
 
+        # if 난이도가 easy
+        self.easy_mode = QLineEdit()
+        self.easy_mode.setText('버튼을 누르는 횟수 : ' + "'" +  str(self.game.max_page) + "'" + ' 번')
+        self.easy_mode.setAlignment(Qt.AlignCenter)
+        self.easy_mode.setReadOnly(True)
+
+
         self.dial = QDial(self)
         self.dial.setNotchesVisible(True)
         self.dial.setRange(1, 30)
@@ -39,7 +46,7 @@ class GameView(QWidget):
         self.dial.valueChanged[int].connect(self.value_changed)
 
         self.ok_button = QPushButton('OK', self)
-        self.ok_button.clicked.connect(self.button_clicked)  # ok버튼 누르면 result_edit에 입력
+        self.ok_button.clicked.connect(self.button_clicked)  # ok 버튼 누르면 result_edit 에 입력
 
         # 레이아웃
         self.result_layout = QHBoxLayout()
@@ -47,14 +54,18 @@ class GameView(QWidget):
         self.result_layout.addWidget(self.result_lcd)
         self.result_layout.addStretch(3)
 
+        self.easy_mode_layout = QHBoxLayout()
+        self.easy_mode_layout.addWidget(self.easy_mode)
+
         self.ok_layout = QHBoxLayout()
         self.ok_layout.addStretch(1)
         self.ok_layout.addWidget(self.ok_button)
         self.ok_layout.addStretch(1)
 
         self.window2_layout = QVBoxLayout()
-        # self.window2_layout.addStretch(1)
         self.window2_layout.addLayout(self.result_layout)
+        if self.game.difficulty == 'Easy':  # 난이도가 Easy 일 때 버튼을 누르는 횟수를 알려주는 QLineEdit() 추가
+            self.window2_layout.addLayout(self.easy_mode_layout)
         self.window2_layout.addWidget(self.dial)
         self.window2_layout.addLayout(self.ok_layout)
 
@@ -62,7 +73,7 @@ class GameView(QWidget):
 
         self.setWindowTitle("금고털기 게임")  # 윈도우 크기상 두글자가 최대
         self.move(300, 300)
-        self.resize(418, 418)
+        self.resize(400, 418)
         self.show()  # show를 initUI에다가
 
     def button_clicked(self): #수정함
