@@ -28,7 +28,7 @@ class RankView(QWidget):
             if i < 3:
                 rank_user = rank_data[i][0]
                 rank_record = rank_data[i][1]
-                self.rank_slot.append(str(i + 1) + ". " + rank_user + ": " + str(rank_record))
+                self.rank_slot.append(str(i + 1) + ". " + rank_user + ": " + str(round(rank_record, 2)))
 
         self.layout = QVBoxLayout()
         self.layout.setSizeConstraint(QLayout.SetFixedSize)
@@ -48,12 +48,12 @@ class RankView(QWidget):
 
         if success:
             record_tuple = (self.user_name, game_data.time_record)
-            temp_rank_data = self.ranking.rank_data
+            temp_rank_data = self.ranking.rank_data.copy()
             temp_rank_data.append(record_tuple)
             temp_rank_data.sort()
             self.rank_text = QLabel("등수: " + str(temp_rank_data.index(record_tuple) + 1))
             self.rank_text.setAlignment(Qt.AlignCenter)
-            self.record_text = QLabel("기록: " + str(game_data.time_record))
+            self.record_text = QLabel("기록: " + str(round(game_data.time_record, 2)))
             self.record_text.setAlignment(Qt.AlignCenter)
             self.layout.addWidget(self.rank_text)
             self.layout.addWidget(self.record_text)
