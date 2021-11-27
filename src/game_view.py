@@ -45,7 +45,7 @@ class GameView(QWidget):
         # self.dial.valueChanged[int].connect(self.chagne_Value) #다이얼 움직일때 소리 함수와 연결
         self.dial.valueChanged[int].connect(self.value_changed)
 
-        self.ok_button = QPushButton('OK', self)
+        self.ok_button = QPushButton('Next', self)
         self.ok_button.clicked.connect(self.button_clicked)  # ok 버튼 누르면 result_edit 에 입력
 
         # 레이아웃
@@ -86,6 +86,9 @@ class GameView(QWidget):
         #self.result_edit.setText(display_pw)
         self.result_lcd.display(str(display_pw))
 
+        # 마지막 페이지일 떄는 버튼 텍스트 'OK'로 변경
+        if page >= self.game.max_page-1:
+            button.setText("OK")
         # game.py의 goto_next 에 현재 입력값을 넣어서 game.py의 current_pw 갱신
         # 페이지가 끝까지 가지 않았을 때 6자리가 되면 실패로 처리
         if len(current_pw) == 6:
