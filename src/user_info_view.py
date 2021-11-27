@@ -28,6 +28,8 @@ class UserInfoView(QWidget):
         self.backspace_error = QLabel('(입력에 문제가 발생했다면 \'ESC\' 키를 눌러주세요)', self)
 
         self.difficulty_label = QLabel('난이도', self)
+        self.easy_explain_label = QLabel('Easy : 버튼을 눌러야하는 횟수가 game창에 표시됩니다.',self)
+        self.hard_explain_label = QLabel('Hard : 소리로만 정답을 유추해야합니다.',self)
 
         self.easy_radio = QRadioButton('Easy', self)
         self.hard_radio = QRadioButton('Hard', self)
@@ -62,6 +64,9 @@ class UserInfoView(QWidget):
         self.window1_layout.addWidget(self.backspace_error)
         self.window1_layout.addStretch(1)
         self.window1_layout.addWidget(self.difficulty_label)
+        self.window1_layout.addWidget(self.easy_explain_label)
+        self.window1_layout.addWidget(self.hard_explain_label)
+        self.window1_layout.addStretch(1)
         self.window1_layout.addLayout(self.difficulty_layout)
         self.window1_layout.addStretch(1)
         self.window1_layout.addLayout(self.start_layout)
@@ -71,7 +76,7 @@ class UserInfoView(QWidget):
         # 윈도우
         self.setWindowTitle("금고 털기 게임")
         self.move(300, 300)
-        self.resize(400, 220)
+        self.resize(450, 320) #가로, 세로
         self.show()  # show를 initUI에다가
 
     def button_clicked(self):
