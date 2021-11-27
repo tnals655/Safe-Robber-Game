@@ -3,7 +3,6 @@ import sys
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QLabel, QLineEdit, QWidget, QRadioButton, QPushButton, QHBoxLayout, \
     QVBoxLayout, QMessageBox
-from PyQt5.QtCore import Qt
 from game import Game
 from game_view import GameView
 
@@ -84,7 +83,7 @@ class UserInfoView(QWidget):
 
     def button_clicked(self):
         user_name = self.name_edit.text().strip()
-        if len(self.user_name) == 0:
+        if len(user_name) == 0:
             QMessageBox.about(self, "ERROR: name", "이름을 입력하세요")
         else:
             difficulty = 'Easy' if self.easy_radio.isChecked() else 'Hard'
