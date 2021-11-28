@@ -26,6 +26,6 @@ class Ranking:
         pickle.dump(self.rank_data, file)
         file.close()
 
-    def rank_data(self, user_name, time):
+    def rank(self, user_name, time):
         self.rank_data.append((user_name, time))
         self.rank_data = sorted(self.rank_data)

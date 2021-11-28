@@ -100,4 +100,4 @@ class GameView(QWidget):
         max_page = self.game.max_page if self.game.difficulty == 'Easy' else '?'
 
         self.dial.setRange(1, self.game.max_number)
-        self.page_display_layout.setText('버튼을 누르는 횟수 : ' + "'" + str(max_page) + "'" + ' 번')
+        self.page_display.setText('버튼을 누르는 횟수 : ' + "'" + str(max_page) + "'" + ' 번')

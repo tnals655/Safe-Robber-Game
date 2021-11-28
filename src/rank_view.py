@@ -29,11 +29,11 @@ class RankView(QWidget):
             if i < 3:
                 rank_user = rank_data[i][0]
                 rank_record = rank_data[i][1]
-                self.rank_slot.append(str(i + 1) + ". " + rank_user + ": " + str(round(rank_record, 2)))
+                self.rank_display.append(str(i + 1) + ". " + rank_user + ": " + str(round(rank_record, 2)))
 
         self.main_layout = QVBoxLayout()
         self.main_layout.setSizeConstraint(QLayout.SetFixedSize)
-        self.main_layout.addWidget(self.rank_slot)
+        self.main_layout.addWidget(self.rank_display)
 
         self.main_layout.addSpacing(20)
 
@@ -75,7 +75,7 @@ class RankView(QWidget):
         if self.success:
             ret = QMessageBox.question(self, '저장', '결과를 저장하겠습니까?', QMessageBox.Ok, QMessageBox.Cancel)
             if ret == QMessageBox.Ok:
-                self.ranking.rank_data(user_name=self.user_name, time=self.game.time_record)
+                self.ranking.rank(user_name=self.user_name, time=self.game.time_record)
                 self.ranking.write_to_file()
             sys.exit()
         else:

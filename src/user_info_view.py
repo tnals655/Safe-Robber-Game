@@ -106,7 +106,7 @@ class UserInfoView(QWidget):
         self.show()  # show를 initUI에다가
 
     def button_clicked(self):
-        user_name = self.name_edit.text().strip()
+        user_name = self.name_input.text().strip()
         if len(user_name) == 0:
             QMessageBox.about(self, "ERROR: name", "이름을 입력하세요")
         else:
