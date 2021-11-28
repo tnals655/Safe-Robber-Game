@@ -1,5 +1,4 @@
 import random
-import sys
 import time
 
 from PyQt5.QtCore import QUrl
@@ -14,12 +13,10 @@ class Game:
         self.current_pw = ''
         self.max_page = 0
         self.current_page = 0
-        self.answer_text = ''
         self.sound_effect = QSoundEffect()
         self.sound_effect.setSource(QUrl.fromLocalFile('resources/beep.wav'))
         self.start_time = -1
         self.time_record = -1
-        self.min_number = 1
         self.max_number = 30
 
     # 새로운 게임 시작
@@ -29,7 +26,7 @@ class Game:
         self.current_pw = ''
         self.max_page = random.randrange(3, 7)
         self.current_page = 1
-        self.answer_text = self.create_password()
+        self.create_password()
         self.start_time = time.time()
         self.max_number = 30 if difficulty == 'Easy' else 40
         # print("# max_page:", self.max_page)
@@ -50,6 +47,7 @@ class Game:
             # 숫자 결정 후에 리스트 랜덤으로 섞기
             random.shuffle(self.answer_list)
 
+    def get_password(self):
         result_text = ''
 
         for num in self.answer_list:
@@ -61,7 +59,7 @@ class Game:
 
     # 정답 체크
     def check_password(self):
-        return self.current_pw == self.answer_text
+        return self.current_pw == self.get_password()
 
     def record_time(self):
         self.time_record = time.time() - self.start_time
