@@ -18,7 +18,9 @@ class UserInfoView(QWidget):
     # 버튼 생성
 
     def initUI(self):
+        # 왼쪽(사용자정보입력)
         self.title_label = QLabel('플레이어 정보 입력', self)
+        self.title_label.setAlignment(Qt.AlignCenter)
 
         self.name_label = QLabel('이름', self)
         self.name_input = QLineEdit(self)
@@ -30,6 +32,38 @@ class UserInfoView(QWidget):
         self.easy_explain_label = QLabel('※ Easy : 버튼을 눌러야 하는 횟수가 게임 창에 표시됩니다.', self)
         self.hard_explain_label = QLabel('※ Hard : 소리로만 정답을 유추해야 합니다.', self)
 
+        self.easy_radio = QRadioButton('Easy', self)
+        self.hard_radio = QRadioButton('Hard', self)
+        self.easy_radio.setChecked(True)
+
+        self.start_button = QPushButton('시작', self)  # self.button.clicked.connect(self.button_clicked)
+        self.start_button.clicked.connect(self.button_clicked)  # addButton.clicked.connect(self.btnAdd_Clicked)
+
+        # 왼쪽 레이아웃
+        self.name_layout = QHBoxLayout()
+        self.name_layout.addWidget(self.name_label)
+        self.name_layout.addWidget(self.name_input)
+
+        self.difficulty_layout = QHBoxLayout()
+        self.difficulty_layout.addWidget(self.easy_radio)
+        self.difficulty_layout.addWidget(self.hard_radio)
+
+        self.left_layout = QVBoxLayout()
+        self.left_layout.addStretch(1)
+        self.left_layout.addWidget(self.title_label)
+        self.left_layout.addStretch(1)
+        self.left_layout.addLayout(self.name_layout)
+        self.left_layout.addWidget(self.backspace_error_label)
+        self.left_layout.addStretch(1)
+        self.left_layout.addWidget(self.difficulty_label)
+        self.left_layout.addWidget(self.easy_explain_label)
+        self.left_layout.addWidget(self.hard_explain_label)
+        self.left_layout.addStretch(1)
+        self.left_layout.addLayout(self.difficulty_layout)
+        self.left_layout.addStretch(1)
+        self.left_layout.addWidget(self.start_button)
+
+        # 오른쪽(게임설명)
         self.rule_label = QLabel("<게임 설명>")
         self.rule_label.setAlignment(Qt.AlignCenter)
 
@@ -47,50 +81,12 @@ class UserInfoView(QWidget):
         self.rule_display.append("")
         self.rule_display.append("번호를 맞추는 데 성공하면 게임 진행 시간이 기록되며, 본인의 랭킹이 표시됩니다.")
 
+        # 오른쪽 레이아웃
         self.right_layout = QVBoxLayout()
         self.right_layout.addWidget(self.rule_label)
         self.right_layout.addWidget(self.rule_display)
 
-        self.easy_radio = QRadioButton('Easy', self)
-        self.hard_radio = QRadioButton('Hard', self)
-        self.easy_radio.setChecked(True)
-
-        self.start_button = QPushButton('시작', self)  # self.button.clicked.connect(self.button_clicked)
-        self.start_button.clicked.connect(self.button_clicked)  # addButton.clicked.connect(self.btnAdd_Clicked)
-
-        # 레이아웃
-        self.title_layout = QHBoxLayout()
-        self.title_layout.addStretch(1)
-        self.title_layout.addWidget(self.title_label)
-        self.title_layout.addStretch(1)
-
-        self.name_layout = QHBoxLayout()
-        self.name_layout.addWidget(self.name_label)
-        self.name_layout.addWidget(self.name_input)
-
-        self.difficulty_layout = QHBoxLayout()
-        self.difficulty_layout.addWidget(self.easy_radio)
-        self.difficulty_layout.addWidget(self.hard_radio)
-
-        self.start_layout = QHBoxLayout()
-        self.start_layout.addWidget(self.start_button)
-
-        # 위 레이아웃들 윈도우에 대입.
-        self.left_layout = QVBoxLayout()
-        self.left_layout.addStretch(1)
-        self.left_layout.addLayout(self.title_layout)
-        self.left_layout.addStretch(1)
-        self.left_layout.addLayout(self.name_layout)
-        self.left_layout.addWidget(self.backspace_error_label)
-        self.left_layout.addStretch(1)
-        self.left_layout.addWidget(self.difficulty_label)
-        self.left_layout.addWidget(self.easy_explain_label)
-        self.left_layout.addWidget(self.hard_explain_label)
-        self.left_layout.addStretch(1)
-        self.left_layout.addLayout(self.difficulty_layout)
-        self.left_layout.addStretch(1)
-        self.left_layout.addLayout(self.start_layout)
-
+        # 메인 레이아웃
         self.main_layout = QHBoxLayout()
         self.main_layout.addLayout(self.left_layout)
         self.main_layout.addSpacing(20)
@@ -102,7 +98,7 @@ class UserInfoView(QWidget):
         self.setWindowTitle("금고 털기 게임")
         self.setWindowIcon(QIcon('resources/icon.png'))
         self.move(300, 300)
-        self.resize(450, 320) #가로, 세로
+        self.resize(450, 320)  # 가로, 세로
         self.show()  # show를 initUI에다가
 
     def button_clicked(self):
