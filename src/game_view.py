@@ -82,7 +82,7 @@ class GameView(QWidget):
         if page >= self.game.max_page-1:
             button.setText("OK")
         # 페이지가 끝까지 가지 않았을 때 6자리가 되면 실패로 처리
-        if len(current_pw) == 6:
+        if len(current_pw) >= 6:
             success = False
 
             if page >= self.game.max_page:
