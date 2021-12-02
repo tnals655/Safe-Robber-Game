@@ -28,7 +28,7 @@ class RankView(QWidget):
             if i < 3:
                 rank_user = self.rank_data[i][0]
                 rank_record = self.rank_data[i][1]
-                self.rank_display.append(str(i + 1) + ". " + rank_user + ": " + str(round(rank_record, 2)))
+                self.rank_display.append(str(i + 1) + ". " + rank_user + ": " + str(round(rank_record, 2)) + "초")
 
         # 공통 (성공/실패)
         self.result_label = QLabel("[ 성공! ]") if self.success else QLabel("[ 실패... ]")
@@ -59,11 +59,21 @@ class RankView(QWidget):
             self.rank_label = QLabel("등수: " + str(temp_rank_data.index(record_tuple) + 1))
             self.rank_label.setAlignment(Qt.AlignCenter)
 
-            self.record_label = QLabel("기록: " + str(round(self.game.time_record, 2)))
+            self.record_label = QLabel("기록: " + str(round(self.game.time_record, 2)) + "초")
             self.record_label.setAlignment(Qt.AlignCenter)
+
 
             self.main_layout.addWidget(self.rank_label)
             self.main_layout.addWidget(self.record_label)
+        else:
+            self.my_answer_label = QLabel("내가 추측한 번호: " + self.game.current_pw)
+            self.my_answer_label.setAlignment(Qt.AlignCenter)
+            self.main_layout.addSpacing(20)
+            self.main_layout.addWidget(self.my_answer_label)
+
+        self.answer_label = QLabel("비밀번호: " + self.game.get_password())
+        self.answer_label.setAlignment(Qt.AlignCenter)
+        self.main_layout.addWidget(self.answer_label)
 
         # 메인 레이아웃
         self.main_layout.addSpacing(40)
