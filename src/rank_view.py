@@ -55,7 +55,7 @@ class RankView(QWidget):
             record_tuple = (self.user_name, self.game.time_record)
             temp_rank_data = self.ranking.rank_data.copy()
             temp_rank_data.append(record_tuple)
-            temp_rank_data.sort()
+            temp_rank_data = sorted(temp_rank_data, key=lambda x: x[1])
             self.rank_label = QLabel("등수: " + str(temp_rank_data.index(record_tuple) + 1))
             self.rank_label.setAlignment(Qt.AlignCenter)
 
