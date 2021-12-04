@@ -33,6 +33,7 @@ class Game:
 
     # 정답 결정
     def create_password(self):
+        global rand_num
         for i in range(self.max_page):
 
             if self.max_page == 3:
@@ -43,8 +44,8 @@ class Game:
                 rand_num = random.randrange(1, 10) if i > 0 else random.randrange(10, self.max_number + 1)
 
             self.answer_list.append(rand_num)
-            # 숫자 결정 후에 리스트 랜덤으로 섞기
-        random.shuffle(self.answer_list)
+
+        random.shuffle(self.answer_list)  # 숫자 결정 후에 리스트 랜덤으로 섞기
 
     def get_password(self):
         result_text = ''
@@ -74,13 +75,14 @@ class Game:
         self.sound_effect.play()
 
     def play_beep_sound(self, value):
-        # 0부터 answer까지 줄이다가 answer부터 30까지 늘리기
         answer = self.answer_list[self.current_page - 1]
 
-        if value <= answer:  # 1 ~ answer 볼륨 감소
+        # 1 ~ answer 볼륨 감소
+        if value <= answer:
             interval = 1 / answer
             volume = (1 - (interval * value))
-        else:  # answer ~ max 볼륨 증가
+        # answer ~ max 볼륨 증가
+        else:
             interval = 1 / (self.max_number - answer)
             volume = (value - answer) * interval
 
