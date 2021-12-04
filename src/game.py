@@ -45,7 +45,7 @@ class Game:
 
             self.answer_list.append(rand_num)
             # 숫자 결정 후에 리스트 랜덤으로 섞기
-            random.shuffle(self.answer_list)
+        random.shuffle(self.answer_list)
 
     def get_password(self):
         result_text = ''
@@ -68,6 +68,11 @@ class Game:
         self.current_pw += str(value)
         self.current_page += 1
         return self.current_pw
+
+    def play_siren_sound(self):
+        self.sound_effect.setSource(QUrl.fromLocalFile('resources/siren.wav'))
+        self.sound_effect.setVolume(0.5)
+        self.sound_effect.play()
 
     def play_beep_sound(self, value):
         # 0부터 answer까지 줄이다가 answer부터 30까지 늘리기

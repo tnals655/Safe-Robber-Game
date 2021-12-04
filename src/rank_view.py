@@ -19,6 +19,9 @@ class RankView(QWidget):
         self.rank_data = self.ranking.rank_data
         self.success = success
         self.initUI()
+        if not success:
+            self.game.play_siren_sound()
+
 
     def initUI(self):
         # 랭킹

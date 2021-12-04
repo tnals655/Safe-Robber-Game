@@ -4,7 +4,6 @@ from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget, \
 from PyQt5.QtCore import Qt
 from rank_view import RankView
 
-
 class GameView(QWidget):
 
     def __init__(self, game_data):
