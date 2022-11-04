@@ -12,34 +12,37 @@
 |20213102|황수민|
 |20213360|김혜은|
 
-</br></br>
+</br></br></br>
+# 🔔 프로그램 설명
+
 코드를 실행하면 아래 사진처럼 게임 시작 창이 뜹니다. </br>
-이 창에서 게임에 대한 '설명'을 보고, '플레이어 정보'와 '게임 난이도'를 설정해 게임을 시작합니다.
+이 창에서 게임에 대한 '설명'을 보고, '플레이어 정보'와 '게임 난이도'를 설정해 게임을 시작합니다. 
+</br></br>
 <img src="https://user-images.githubusercontent.com/84231143/199906532-a4dfb470-4e98-43cb-b6f9-b01cc0cd2229.JPG" width="60%"> </br>
 
 </br></br></br>
-## EASY
-난이도를 easy로 선택한 경우, 버튼을 누르는 횟수가 힌트로 주어집니다. </br>
+## 🌱 EASY
+난이도를 easy로 선택한 경우, 버튼을 누르는 횟수가 힌트로 주어집니다. </br></br>
 <img src="https://user-images.githubusercontent.com/84231143/199906588-0ce9c792-6c45-4592-8b68-17b411941c40.JPG" width="20%"> </br></br></br>
-화면 중앙의 다이얼 버튼을 마우스로 이동시키면, 정답에 근접할수록 소리가 커지는데, 이때, 소리가 가장 큰 틱을 골라 [next] 버튼을 누르면, 상단에 현재 입력된 값이 바뀌는 것을 볼 수 있습니다. </br>
+화면 중앙의 다이얼 버튼을 마우스로 이동시키면, 정답에 근접할수록 소리가 커지는데, 이때, 소리가 가장 큰 틱을 골라 [next] 버튼을 누르면, 상단에 현재 입력된 값이 바뀌는 것을 볼 수 있습니다. </br></br>
 <img src="https://user-images.githubusercontent.com/84231143/199906618-fe0b9203-069a-4f45-b8eb-6ca1c7f8d477.JPG" width="30%">
 <img src="https://user-images.githubusercontent.com/84231143/199906752-d3c2e49d-594b-4df4-a113-18a69921a18c.JPG" width="30%">
 <img src="https://user-images.githubusercontent.com/84231143/199906763-5e6afc68-e8bb-4eb1-a023-6a0f6080ae1f.JPG" width="30%"> </br></br>
 
 기록판의 각 자리 숫자가 끝까지 바뀌였을 때, 게임이 종료됩니다. </br>
 정답을 맞췄다면, 게임 랭크와 게임을 플레이하는데 걸린 시간이 같이 출력됩니다. 게임 순위는 정답을 맞춘 사람들 중 가장 시간이 적게 걸린 순으로 등수가 정해집니다. </br>
-종료를 누르면, 내 기록을 저장할 것인지 물어보는 창이 뜹니다. 이때, ok를 누르면 저장되고, cancle을 누르면 저장되지 않고 종료됩니다. </br>
+종료를 누르면, 내 기록을 저장할 것인지 물어보는 창이 뜹니다. 이때, ok를 누르면 저장되고, cancle을 누르면 저장되지 않고 종료됩니다. </br></br>
 <img src="https://user-images.githubusercontent.com/84231143/199906775-c22b48f2-437a-4ec6-aad4-f64d93a57368.JPG" width="20%">
 <img src="https://user-images.githubusercontent.com/84231143/199906779-37ae0222-77f9-4783-8910-7d26e6af0e78.JPG" width="20%">
 
 </br></br>
 정답과 일치하지 않으면, 개임랭크와 내가 추측한 답, 정답을 모두 보여줍니다.</br> 게임에 실패했을 시, 이때 플레이 시간은 출력되지 않고, 저장 버튼도 없습니다. 그대로 게임 끝입니다.
-</br>
+</br></br>
 <img src="https://user-images.githubusercontent.com/84231143/199906789-87684029-211a-4daf-83aa-a6e8409a675c.JPG"  width="20%"> </br>
 
 </br></br></br>
-## HARD
-난이도를 hard로 선택한 경우, 버튼을 누르는 횟수가 안 주어지고, 틱의 수를 더 많이 설정해 유추하기 어렵게 만들었습니다.</br> easy와 플레이 방법이 동일합니다. </br>
+## 🔭 HARD
+난이도를 hard로 선택한 경우, 버튼을 누르는 횟수가 안 주어지고, 틱의 수를 더 많이 설정해 유추하기 어렵게 만들었습니다.</br> easy와 플레이 방법이 동일합니다. </br></br>
 <img src="https://user-images.githubusercontent.com/84231143/199906734-d924ac52-d034-4325-becc-a2f905541d60.JPG" width="60%"> </br>
 <img src="https://user-images.githubusercontent.com/84231143/199906740-cfe54eba-bff5-46df-8def-3b031a9ce7d9.JPG" width="20%"> 
 <img src="https://user-images.githubusercontent.com/84231143/199906653-d09406c9-1bf1-47a4-aa42-2145c1624848.JPG" width="20%">
@@ -50,7 +53,7 @@
 ⚡랭킹을 저장할 파일은 easy, hard 난이도 각각 따로 만들었습니다. </br>
 
 </br></br></br>
-## 파트 분배
+## 🤝 파트 분배
 commit 및 활동 기록 상세 내역입니다. (빠진 내용이 많아 대략 이렇게 했다는 참고용으로 봐주세요)
 
 </br>
