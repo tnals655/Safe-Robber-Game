@@ -22,7 +22,7 @@
 
 </br></br></br>
 ## 🌱 EASY
-난이도를 easy로 선택한 경우, 버튼을 누르는 횟수가 힌트로 주어집니다. </br></br>
+난이도를 [easy]로 선택한 경우, 버튼을 누르는 횟수가 힌트로 주어집니다. </br></br>
 <img src="https://user-images.githubusercontent.com/84231143/199906588-0ce9c792-6c45-4592-8b68-17b411941c40.JPG" width="20%"> </br></br></br>
 화면 중앙의 다이얼 버튼을 마우스로 이동시키면, 정답에 근접할수록 소리가 커지는데, 이때, 소리가 가장 큰 틱을 골라 [next] 버튼을 누르면, 상단에 현재 입력된 값이 바뀌는 것을 볼 수 있습니다. </br></br>
 <img src="https://user-images.githubusercontent.com/84231143/199906618-fe0b9203-069a-4f45-b8eb-6ca1c7f8d477.JPG" width="30%">
@@ -31,7 +31,7 @@
 
 기록판의 각 자리 숫자가 끝까지 바뀌였을 때, 게임이 종료됩니다. </br>
 정답을 맞췄다면, 게임 랭크와 게임을 플레이하는데 걸린 시간이 같이 출력됩니다. 게임 순위는 정답을 맞춘 사람들 중 가장 시간이 적게 걸린 순으로 등수가 정해집니다. </br>
-종료를 누르면, 내 기록을 저장할 것인지 물어보는 창이 뜹니다. 이때, ok를 누르면 저장되고, cancle을 누르면 저장되지 않고 종료됩니다. </br></br>
+종료를 누르면, 내 기록을 저장할 것인지 물어보는 창이 뜹니다. 이때, [ok]를 누르면 저장되고, [cancle]을 누르면 저장되지 않고 종료됩니다. </br></br>
 <img src="https://user-images.githubusercontent.com/84231143/199906775-c22b48f2-437a-4ec6-aad4-f64d93a57368.JPG" width="20%">
 <img src="https://user-images.githubusercontent.com/84231143/199906779-37ae0222-77f9-4783-8910-7d26e6af0e78.JPG" width="20%">
 
@@ -41,8 +41,8 @@
 <img src="https://user-images.githubusercontent.com/84231143/199906789-87684029-211a-4daf-83aa-a6e8409a675c.JPG"  width="20%"> </br>
 
 </br></br></br>
-## 🔭 HARD
-난이도를 hard로 선택한 경우, 버튼을 누르는 횟수가 안 주어지고, 틱의 수를 더 많이 설정해 유추하기 어렵게 만들었습니다.</br> easy와 플레이 방법이 동일합니다. </br></br>
+## 🎃 HARD
+난이도를 [hard]로 선택한 경우, 버튼을 누르는 횟수가 안 주어지고, 틱의 수를 더 많이 설정해 유추하기 어렵게 만들었습니다.</br> easy와 플레이 방법이 동일합니다. </br></br>
 <img src="https://user-images.githubusercontent.com/84231143/199906734-d924ac52-d034-4325-becc-a2f905541d60.JPG" width="60%"> </br>
 <img src="https://user-images.githubusercontent.com/84231143/199906740-cfe54eba-bff5-46df-8def-3b031a9ce7d9.JPG" width="20%"> 
 <img src="https://user-images.githubusercontent.com/84231143/199906653-d09406c9-1bf1-47a4-aa42-2145c1624848.JPG" width="20%">
